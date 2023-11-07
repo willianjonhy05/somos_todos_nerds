@@ -2,14 +2,30 @@ from django.shortcuts import render, redirect
 from .models import Nerd
 from .forms import NerdForm
 from django.contrib import messages
+from django.views.generic import TemplateView, ListView, DetailView
 # Create your views here.
 
-def home(request):
-    return render(request, 'home.html')
 
-def todos(request):
-    nerds = Nerd.objects.all().order_by('nome')
-    return render(request, 'todos.html', {'nerds': nerds})
+
+class Home(TemplateView):
+    template_name = "home.html"
+
+
+class Sobre(TemplateView):
+    template_name = "sobre.html"
+
+
+class NerdListView(ListView):
+    model=Nerd
+    template_name='todos.html'
+    context_object_name='nerds'   
+
+
+class NerdDetailView(DetailView):
+    model=Nerd
+    template_name='detalhar.html'
+    context_object_name='nerd'
+    pk_url_kwarg='id'
 
 def detalhar(request, id):
     nerd = Nerd.objects.get(id=id)
@@ -47,5 +63,4 @@ def apagar(request, id):
     messages.add_message(request, messages.SUCCESS, "Nerd apagado com Sucesso!")
     return redirect('todos')
 
-def sobre(request):
-    return render(request, 'sobre.html')
+
