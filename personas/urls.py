@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import NerdDetailView, sugerir, atualizar, apagar, NerdListView
+from .views import NerdDetailView, NerdCreateView, NerdUpdateView, NerdDeleteView, NerdListView
 
 urlpatterns = [
     path('', NerdListView.as_view(), name='todos'),
     path('<int:id>', NerdDetailView.as_view(), name='detalhar'),
-    path('sugerir/', sugerir, name='sugerir'),
-    path('atualizar/<int:id>', atualizar, name='atualizar'),
-    path('deletar/<int:id>', apagar, name='apagar')
+    path('sugerir/', NerdCreateView.as_view(), name='sugerir'),
+    path('atualizar/<int:id>', NerdUpdateView.as_view(), name='atualizar'),
+    path('deletar/<int:id>', NerdDeleteView.as_view(), name='apagar'),
    
 ]
