@@ -34,10 +34,9 @@ class NerdCreateView(CreateView):
     template_name='sugerir.html'
     form_class=NerdForm
     
-    def get_sucess_url(self):
-        messages.add_message(self.request, "Nerd cadastrado com Sucesso!")
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, "Nerd Cadastrado com sucesso!")
         return reverse('todos')
-
 
 
 class NerdUpdateView(UpdateView):
@@ -45,13 +44,20 @@ class NerdUpdateView(UpdateView):
     template_name='atualizar.html'
     form_class=NerdForm
     pk_url_kwarg='id'
-    success_url=reverse("todos")
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, "Nerd Cadastrado com sucesso!")
+        return reverse('todos')
 
 class NerdDeleteView(DeleteView):
     model=Nerd
     template_name='nerd_confirm_delete.html'
-    success_url=reverse('todos')
     pk_url_kwarg='id'
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, "Nerd Apagado com sucesso!")
+        return reverse('todos')
+
 
 
 # def sugerir(request):

@@ -21,13 +21,19 @@
             <p class="lead text-start">{{ nerd.midia }}</p>
             <h4 class="text-start">Profissão: </h4>
             <p class="lead text-start">{{ nerd.profissao }}</p>
+            
+
+        </div>
+        <div>
             <h4 class="text-start">Sobre: </h4>
             <p class="lead text-start">{{ nerd.sobre }}</p>
         </div>
+        <hr>
 
 
     </div>
         <a class="btn btn-primary" href="{% url 'atualizar' nerd.id %}">Atualizar Nerd</a>
         <a class="btn btn-danger" href="{% url 'apagar' nerd.id %}">Apagar Nerd</a>
+        
 </div>
 {% endblock %}
